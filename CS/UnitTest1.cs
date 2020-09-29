@@ -72,7 +72,7 @@ namespace OutlookInspiredApp.UITest
 
             WindowsElement newEmployeeWindow = null;
             while (newEmployeeWindow == null)
-                newEmployeeWindow = desktopElement.FindElementsByClassName("Window").FirstOrDefault(x => x.GetAttribute("Name") == "Employee (New)");
+                newEmployeeWindow = desktopElement.FindElementByName("Employee (New)");
 
             newEmployeeWindow.FindElementByName("First Name").FindElementByClassName("TextEdit").SendKeys("John");
             newEmployeeWindow.FindElementByName("Last Name").FindElementByClassName("TextEdit").SendKeys("Public");
@@ -81,118 +81,26 @@ namespace OutlookInspiredApp.UITest
             newEmployeeWindow.FindElementByName("Email").FindElementByClassName("ButtonEdit").SendKeys("john.public@dx-email.com");
 
 
-            newEmployeeWindow.FindElementByName("Save").Click();
-            newEmployeeWindow.FindElementByName("Close").Click();
+            newEmployeeWindow.FindElementByName("Save & Close").Click();
         }
         [Test]
         [Order(1)]
         public void CreateTask()
         {
-            // LeftClick on Button "Task" at (12,46)
-            Console.WriteLine("LeftClick on Button \"Task\" at (12,46)");
-            string xpath_LeftClickButtonTask_12_46 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Custom[@ClassName=\"DevAVDbView\"]/Group[@Name=\"RibbonControl\"][@AutomationId=\"ribbonControl\"]/Pane[@ClassName=\"RibbonSelectedPageControl\"][@Name=\"Lower Ribbon\"]/Group[@ClassName=\"RibbonPageGroupControl\"][@Name=\"Actions\"]/Button[@Name=\"Task\"][@AutomationId=\"xD4D45A8D530F6B115D09D16A5D8E5D2A\"]";
-            var winElem_LeftClickButtonTask_12_46 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickButtonTask_12_46);
-            if (winElem_LeftClickButtonTask_12_46 != null)
-            {
-                winElem_LeftClickButtonTask_12_46.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButtonTask_12_46}");
-            }
+            var desktopElement = desktopSession.DesktopSessionElement;
+            var bNewEmployee = desktopElement.FindElementByName("Task");
+            bNewEmployee.Click();
 
+            WindowsElement newTaskWindow = null;
+            while (newTaskWindow == null)
+                newTaskWindow = desktopElement.FindElementByName("EmployeeTask (New)");
 
-            // LeftClick on Edit "" at (221,11)
-            Console.WriteLine("LeftClick on Edit \"\" at (221,11)");
-            string xpath_LeftClickEdit_221_11 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Window[@ClassName=\"Window\"][@Name=\"EmployeeTask (New)\"]/Custom[@ClassName=\"EmployeeTaskView\"]/Group[@Name=\"LayoutControl\"][@AutomationId=\"LayoutControl\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Pane[@Name=\"Subject\"][@AutomationId=\"Subject\"]/Edit[@ClassName=\"TextEdit\"]/Edit[@AutomationId=\"PART_Editor\"]";
-            var winElem_LeftClickEdit_221_11 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickEdit_221_11);
-            if (winElem_LeftClickEdit_221_11 != null)
-            {
-                winElem_LeftClickEdit_221_11.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickEdit_221_11}");
-            }
+            newTaskWindow.FindElementByName("Subject").FindElementByClassName("TextEdit").SendKeys("Call Jane");
+            var comboBox = newTaskWindow.FindElementByName("Assigned To").FindElementByClassName("ComboBoxEdit");
+            comboBox.FindElementByXPath("//Edit[@ClassName=\"ButtonEdit\"]/Button[@ClassName=\"Button\"]").Click();
+            comboBox.SendKeys("John Public");            
 
-
-            // KeyboardInput VirtualKeys="Keys.LeftShift + "c" + Keys.LeftShift"all"Keys.Space + Keys.SpaceKeys.LeftShift + "j" + Keys.LeftShift"ane"" CapsLock=False NumLock=True ScrollLock=False
-            Console.WriteLine("KeyboardInput VirtualKeys=\"Keys.LeftShift + \"c\" + Keys.LeftShift\"all\"Keys.Space + Keys.SpaceKeys.LeftShift + \"j\" + Keys.LeftShift\"ane\"\" CapsLock=False NumLock=True ScrollLock=False");
-            System.Threading.Thread.Sleep(100);
-            winElem_LeftClickEdit_221_11.SendKeys(Keys.LeftShift + "c" + Keys.LeftShift);
-            winElem_LeftClickEdit_221_11.SendKeys("all");
-            winElem_LeftClickEdit_221_11.SendKeys(Keys.Space + Keys.Space);
-            winElem_LeftClickEdit_221_11.SendKeys(Keys.LeftShift + "j" + Keys.LeftShift);
-            winElem_LeftClickEdit_221_11.SendKeys("ane");
-
-
-            // LeftClick on Button "" at (23,20)
-            Console.WriteLine("LeftClick on Button \"\" at (23,20)");
-            string xpath_LeftClickButton_23_20 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Window[@ClassName=\"Window\"][@Name=\"EmployeeTask (New)\"]/Custom[@ClassName=\"EmployeeTaskView\"]/Group[@Name=\"LayoutControl\"][@AutomationId=\"LayoutControl\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Pane[@Name=\"Assigned To\"][@AutomationId=\"Assigned To\"]/ComboBox[@ClassName=\"ComboBoxEdit\"][@Name=\"Amelia Harper\"]/Edit[@ClassName=\"ButtonEdit\"][@Name=\"Amelia Harper\"]/Button[@ClassName=\"Button\"]";
-            var winElem_LeftClickButton_23_20 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickButton_23_20);
-            if (winElem_LeftClickButton_23_20 != null)
-            {
-                winElem_LeftClickButton_23_20.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButton_23_20}");
-            }
-
-
-            // LeftClick on Edit "" at (172,15)
-            Console.WriteLine("LeftClick on Edit \"\" at (172,15)");
-            string xpath_LeftClickEdit_172_15 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Window[@ClassName=\"Window\"][@Name=\"EmployeeTask (New)\"]/Custom[@ClassName=\"EmployeeTaskView\"]/Group[@Name=\"LayoutControl\"][@AutomationId=\"LayoutControl\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Group[@Name=\"LayoutGroup\"][@AutomationId=\"LayoutGroup\"]/Pane[@Name=\"Assigned To\"][@AutomationId=\"Assigned To\"]/ComboBox[@ClassName=\"ComboBoxEdit\"]/Edit[@ClassName=\"ButtonEdit\"]";
-            var winElem_LeftClickEdit_172_15 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickEdit_172_15);
-            if (winElem_LeftClickEdit_172_15 != null)
-            {
-                winElem_LeftClickEdit_172_15.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickEdit_172_15}");
-            }
-
-
-            // KeyboardInput VirtualKeys="Keys.LeftShift + "j" + Keys.LeftShift"ohn"Keys.Space + Keys.SpaceKeys.LeftShift + "p" + Keys.LeftShift"ublic"Keys.Return + Keys.Return" CapsLock=False NumLock=True ScrollLock=False
-            Console.WriteLine("KeyboardInput VirtualKeys=\"Keys.LeftShift + \"j\" + Keys.LeftShift\"ohn\"Keys.Space + Keys.SpaceKeys.LeftShift + \"p\" + Keys.LeftShift\"ublic\"Keys.Return + Keys.Return\" CapsLock=False NumLock=True ScrollLock=False");
-            System.Threading.Thread.Sleep(100);
-            winElem_LeftClickEdit_172_15.SendKeys(Keys.LeftShift + "j" + Keys.LeftShift);
-            winElem_LeftClickEdit_172_15.SendKeys("ohn");            
-            winElem_LeftClickEdit_172_15.SendKeys(Keys.Down + Keys.Down);
-            winElem_LeftClickEdit_172_15.SendKeys(Keys.Return + Keys.Return);
-
-
-            // LeftClick on Button "Save" at (21,61)
-            Console.WriteLine("LeftClick on Button \"Save\" at (21,61)");
-            string xpath_LeftClickButtonSave_21_61 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Window[@ClassName=\"Window\"][@Name=\"EmployeeTask (New)\"]/Custom[@ClassName=\"EmployeeTaskView\"]/Group[@Name=\"RibbonControl\"][@AutomationId=\"ribbonControl\"]/Pane[@ClassName=\"RibbonSelectedPageControl\"][@Name=\"Lower Ribbon\"]/Group[@ClassName=\"RibbonPageGroupControl\"][@Name=\"Save\"]/Button[@Name=\"Save\"][@AutomationId=\"xF0A2A8AA912F28E23E49FCAD8DF0C0B9\"]";
-            var winElem_LeftClickButtonSave_21_61 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickButtonSave_21_61);
-            if (winElem_LeftClickButtonSave_21_61 != null)
-            {
-                winElem_LeftClickButtonSave_21_61.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButtonSave_21_61}");
-            }
-
-
-            // LeftClick on Button "Close" at (19,69)
-            Console.WriteLine("LeftClick on Button \"Close\" at (19,69)");
-            string xpath_LeftClickButtonClose_19_69 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Window[@ClassName=\"Window\"][@Name=\"Call  Jane\"]/Custom[@ClassName=\"EmployeeTaskView\"]/Group[@Name=\"RibbonControl\"][@AutomationId=\"ribbonControl\"]/Pane[@ClassName=\"RibbonSelectedPageControl\"][@Name=\"Lower Ribbon\"]/Group[@ClassName=\"RibbonPageGroupControl\"][@Name=\"Close\"]/Button[@Name=\"Close\"][@AutomationId=\"x5073E1AD7C525B2DB4CD533F9C83448F\"]";
-            var winElem_LeftClickButtonClose_19_69 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickButtonClose_19_69);
-            if (winElem_LeftClickButtonClose_19_69 != null)
-            {
-                winElem_LeftClickButtonClose_19_69.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickButtonClose_19_69}");
-            }
-
-
-
-
+            newTaskWindow.FindElementByName("Save & Close").Click();
         }
 
         [Test]
