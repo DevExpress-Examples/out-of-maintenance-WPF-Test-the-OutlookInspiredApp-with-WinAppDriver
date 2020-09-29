@@ -1,0 +1,12 @@
+The following open source libraries are used and included within this sample project:
+
+Appium.WebDriver (Open Source – Apache 2.0)
+Copyright (c) 2020 Appium Contributors
+https://github.com/appium/appium-dotnet-driver
+
+Windows Application Driver
+Copyright (c) Microsoft
+https://github.com/microsoft/WinAppDriver
+
+
+The open source libraries included in this product are done so pursuant to each individual open source library license and subject to the disclaimers and limitations on liability set forth in each open source library license.
