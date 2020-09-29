@@ -107,46 +107,19 @@ namespace OutlookInspiredApp.UITest
         [Order(2)]
         public void CheckTasks()
         {
-            // LeftClick on DataItem "Row0" at (13,17)
-            Console.WriteLine("LeftClick on DataItem \"Row0\" at (13,17)");
-            string xpath_LeftClickDataItemRow0_13_17 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Custom[@ClassName=\"DevAVDbView\"]/Group[@Name=\"dockLayoutManager\"][@AutomationId=\"dockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/Custom[@ClassName=\"EmployeeCollectionView\"]/Group[@Name=\"DockLayoutManager\"][@AutomationId=\"DockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/DataGrid[@AutomationId=\"tableViewGridControl\"]/Pane[@Name=\"DataPanel\"][@AutomationId=\"dataPresenter\"]/DataItem[@Name=\"Row0\"]";
-            var winElem_LeftClickDataItemRow0_13_17 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickDataItemRow0_13_17);
-            if (winElem_LeftClickDataItemRow0_13_17 != null)
-            {
-                winElem_LeftClickDataItemRow0_13_17.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickDataItemRow0_13_17}");
-            }
+            var desktopElement = desktopSession.DesktopSessionElement;
+            var dockManager = desktopElement.FindElementByName("DockLayoutManager");
+            var grid = dockManager.FindElementByAccessibilityId("tableViewGridControl");
 
+            grid.FindElementByAccessibilityId("SearchComboBox").SendKeys("John Public");
+            grid.FindElementByName("John Public").Click();
 
-            // LeftClick on Text "Tasks" at (12,10)
-            Console.WriteLine("LeftClick on Text \"Tasks\" at (12,10)");
-            string xpath_LeftClickTextTasks_12_10 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Custom[@ClassName=\"DevAVDbView\"]/Group[@Name=\"dockLayoutManager\"][@AutomationId=\"dockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/Custom[@ClassName=\"EmployeeCollectionView\"]/Group[@Name=\"DockLayoutManager\"][@AutomationId=\"DockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/Custom[@ClassName=\"EmployeePanelView\"]/Tab[@ClassName=\"TabControl\"]/TabItem[@ClassName=\"TabItem\"][@Name=\"Tasks\"]/Text[@ClassName=\"TextBlock\"][@Name=\"Tasks\"]";
-            var winElem_LeftClickTextTasks_12_10 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickTextTasks_12_10);
-            if (winElem_LeftClickTextTasks_12_10 != null)
-            {
-                winElem_LeftClickTextTasks_12_10.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickTextTasks_12_10}");
-            }
+            var tab = dockManager.FindElementsByClassName("TabItem").First(x => x.GetAttribute("Name") == "Tasks");
+            tab.Click();
 
-
-            // LeftClick on Edit "Call  Jane" at (19,18)
-            Console.WriteLine("LeftClick on Edit \"Call  Jane\" at (19,18)");
-            string xpath_LeftClickEditCallJane_19_18 = "/Pane[@ClassName=\"#32769\"][@Name=\"Desktop 1\"]/Window[@ClassName=\"Window\"][@Name=\"Employees - DevAV\"]/Custom[@ClassName=\"DevAVDbView\"]/Group[@Name=\"dockLayoutManager\"][@AutomationId=\"dockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/Custom[@ClassName=\"EmployeeCollectionView\"]/Group[@Name=\"DockLayoutManager\"][@AutomationId=\"DockLayoutManager\"]/Group[@Name=\"LayoutGroup\"][starts-with(@AutomationId,\"LayoutGroup\")]/Group[@Name=\"LayoutPanel\"][starts-with(@AutomationId,\"LayoutPanel\")]/Custom[@ClassName=\"EmployeePanelView\"]/Tab[@ClassName=\"TabControl\"]/TabItem[@ClassName=\"TabItem\"][@Name=\"Tasks\"]/DataGrid[position()=2]/Pane[@Name=\"DataPanel\"][@AutomationId=\"dataPresenter\"]/DataItem[@Name=\"Row0\"]/Custom[@Name=\"Column1\"][@AutomationId=\"Subject\"]/Edit[@ClassName=\"TextEdit\"][@Name=\"Call  Jane\"]";
-            var winElem_LeftClickEditCallJane_19_18 = desktopSession.FindElementByAbsoluteXPath(xpath_LeftClickEditCallJane_19_18);
-            if (winElem_LeftClickEditCallJane_19_18 != null)
-            {
-                winElem_LeftClickEditCallJane_19_18.Click();
-            }
-            else
-            {
-                Assert.Fail($"Failed to find element using xpath: {xpath_LeftClickEditCallJane_19_18}");
-            }
+            var row = tab.FindElementByAccessibilityId("Row0");
+            var callJane = row.FindElementsByClassName("TextEdit").FirstOrDefault(x=>x.GetAttribute("Name") == "Call Jane");
+            Assert.IsNotNull(callJane);         
         }
 
         [Test][Explicit]
