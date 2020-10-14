@@ -14,7 +14,7 @@ Imports System.Threading
 Namespace OutlookInspiredApp.UITest
 	Public Class Tests
 		Private pWad As Process
-		Private Const PathToTheDemo As String = "C:\Work\2020.2\Demos.RealLife\DevExpress.OutlookInspiredApp\DevExpress.OutlookInspiredApp.Wpf\bin\Debug\DevExpress.OutlookInspiredApp.Wpf.exe"
+		Private Const PathToTheDemo As String = "C:\Users\Public\Documents\DevExpress Demos 20.2\Components\WPF\DevExpress.OutlookInspiredApp.Wpf\Bin\DevExpress.OutlookInspiredApp.Wpf.exe"
 		Private privatedesktopSession As DesktopSession
 		Protected Property desktopSession() As DesktopSession
 			Get
