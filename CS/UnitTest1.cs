@@ -16,7 +16,7 @@ namespace OutlookInspiredApp.UITest
     public class Tests
     {        
         Process pWad;
-        const string PathToTheDemo = @"C:\Work\2020.2\Demos.RealLife\DevExpress.OutlookInspiredApp\DevExpress.OutlookInspiredApp.Wpf\bin\Debug\DevExpress.OutlookInspiredApp.Wpf.exe";
+        const string PathToTheDemo = @"C:\Users\Public\Documents\DevExpress Demos 20.2\Components\WPF\DevExpress.OutlookInspiredApp.Wpf\Bin\DevExpress.OutlookInspiredApp.Wpf.exe";
         protected DesktopSession desktopSession { get; private set; }
         [OneTimeSetUp]
         public void FixtureSetup()
